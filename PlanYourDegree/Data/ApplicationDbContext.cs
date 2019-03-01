@@ -14,12 +14,14 @@ namespace PlanYourDegree.Data
         {
         }
         public DbSet<Degree> Degrees { get; set; }
+        public DbSet<Course> Courses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
            // modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             modelBuilder.Entity<Degree>().ToTable("Degree");
+            modelBuilder.Entity<Course>().ToTable("Course");
             
         }
     }
