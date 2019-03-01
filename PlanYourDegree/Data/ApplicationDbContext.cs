@@ -17,6 +17,8 @@ namespace PlanYourDegree.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+           // modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             modelBuilder.Entity<Degree>().ToTable("Degree");
             
         }
