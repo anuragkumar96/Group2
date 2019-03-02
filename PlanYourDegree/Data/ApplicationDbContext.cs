@@ -15,6 +15,7 @@ namespace PlanYourDegree.Data
         }
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Student> Students { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +23,8 @@ namespace PlanYourDegree.Data
            // modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUser");
             modelBuilder.Entity<Degree>().ToTable("Degree");
             modelBuilder.Entity<Course>().ToTable("Course");
-            
+            modelBuilder.Entity<Student>().ToTable("Student");
+
         }
     }
 }

@@ -55,7 +55,23 @@ namespace PlanYourDegree.Data
                 }
                 context.SaveChanges();
 
-            
+            var students = new Student[]
+              {
+                  new Student {StudentID=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=91955040},
+                  new Student {StudentID=530473,FirstName="Ujjawal",LastName="Kumar",NineOneNine=919562997},
+                  new Student {StudentID=533909,FirstName="Meghana",LastName="Putta",NineOneNine=919570037},
+                  new Student {StudentID=533570,FirstName="Keerthi sree",LastName="Kukunoor",NineOneNine=919569706},
+                  new Student {StudentID=531372,FirstName="Anurag",LastName="Kumar",NineOneNine=919562995}
+
+              };
+            Console.WriteLine($"Inserted {students.Length} new Students");
+            foreach (Student s in students)
+            {
+                context.Students.Add(s);
+            }
+            context.SaveChanges();
+
+
         }
     }
 }

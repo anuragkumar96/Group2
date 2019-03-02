@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanYourDegree", "PlanYourDegree\PlanYourDegree.csproj", "{B140A07B-5944-4B6B-961C-65224B1B780A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanYourDegree", "PlanYourDegree\PlanYourDegree.csproj", "{B140A07B-5944-4B6B-961C-65224B1B780A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanYourDegree.Tests", "PlanYourDegree.Tests\PlanYourDegree.Tests.csproj", "{E21455A7-2721-4979-A0F3-89A9C8AA4509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlanYourDegree.Tests", "PlanYourDegree.Tests\PlanYourDegree.Tests.csproj", "{E21455A7-2721-4979-A0F3-89A9C8AA4509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
