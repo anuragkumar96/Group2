@@ -55,6 +55,8 @@ namespace PlanYourDegree.Data
                 }
                 context.SaveChanges();
 
+            //Student
+
             var students = new Student[]
               {
                   new Student {StudentID=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=91955040},
@@ -70,6 +72,31 @@ namespace PlanYourDegree.Data
                 context.Students.Add(s);
             }
             context.SaveChanges();
+
+            //DegreePlan
+
+
+            var degreePlans = new DegreePlan[]
+              {
+new DegreePlan {DegreePlanID=101,DegreeID =2,StudentID =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+new DegreePlan {DegreePlanID=102,DegreeID =2,StudentID =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+new DegreePlan {DegreePlanID=103,DegreeID =2,StudentID =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+new DegreePlan {DegreePlanID=104,DegreeID =2,StudentID =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+new DegreePlan {DegreePlanID=105,DegreeID =2,StudentID =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+new DegreePlan {DegreePlanID=106,DegreeID =2,StudentID =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+new DegreePlan {DegreePlanID=107,DegreeID =2,StudentID =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+new DegreePlan {DegreePlanID=108,DegreeID =2,StudentID =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+new DegreePlan {DegreePlanID=109,DegreeID =2,StudentID =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+new DegreePlan {DegreePlanID=110,DegreeID =2,StudentID =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"}
+
+              };
+            Console.WriteLine($"Inserted {degreePlans.Length} new DegreePlan");
+            foreach (DegreePlan dp in degreePlans)
+            {
+                context.DegreePlans.Add(dp);
+            }
+            context.SaveChanges();
+
 
 
         }
