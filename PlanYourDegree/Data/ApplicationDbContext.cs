@@ -18,6 +18,7 @@ namespace PlanYourDegree.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<DegreePlan> DegreePlans { get; set; } //DegreeTermReq
         public DbSet<DegreeTermReq> DegreeTermReqs { get; set; }
+        public DbSet<DegreeReq> DegreeReqs { get; set; }
 
 
 
@@ -30,6 +31,7 @@ namespace PlanYourDegree.Data
             modelBuilder.Entity<Student>().ToTable("Student");
             modelBuilder.Entity<DegreePlan>().ToTable("DegreePlan");
             modelBuilder.Entity<DegreeTermReq>().ToTable("DegreeTermReq");
+            modelBuilder.Entity<DegreeReq>().ToTable("DegreeReq");
 
         }
     }

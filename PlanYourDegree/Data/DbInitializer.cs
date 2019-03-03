@@ -249,7 +249,30 @@ new DegreeTermReq{DegreeTermReqID=137,DegreePlanID =110,TermID =5,CourseId=20}
             }
             context.SaveChanges();
 
+            //DegreeReq
 
+            var degreeReq = new DegreeReq[]
+              {
+                 new DegreeReq{DegreeReqID=101,DegreeID =2,CourseID =460},
+new DegreeReq{DegreeReqID=102,DegreeID =2,CourseID =542},
+new DegreeReq{DegreeReqID=103,DegreeID =2,CourseID =563},
+new DegreeReq{DegreeReqID=104,DegreeID =2,CourseID =560},
+new DegreeReq{DegreeReqID=105,DegreeID =2,CourseID =555},
+new DegreeReq{DegreeReqID=106,DegreeID =2,CourseID =618},
+new DegreeReq{DegreeReqID=107,DegreeID =2,CourseID =1},
+new DegreeReq{DegreeReqID=108,DegreeID =2,CourseID =664},
+new DegreeReq{DegreeReqID=109,DegreeID =2,CourseID =691},
+new DegreeReq{DegreeReqID=110,DegreeID =2,CourseID =692},
+new DegreeReq{DegreeReqID=111,DegreeID =2,CourseID =10},
+new DegreeReq{DegreeReqID=112,DegreeID =2,CourseID =20},
+
+              };
+            Console.WriteLine($"Inserted {degreeReq.Length} new DegreeReq");
+            foreach (DegreeReq dr in degreeReq)
+            {
+                context.DegreeReqs.Add(dr);
+            }
+            context.SaveChanges();
 
 
         }
