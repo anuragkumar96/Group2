@@ -274,6 +274,46 @@ new DegreeReq{DegreeReqID=112,DegreeID =2,CourseID =20},
             }
             context.SaveChanges();
 
+            //StudentTerm
+            var studentTerm = new StudentTerm[]
+            {
+
+new StudentTerm {StudentTermId =1,StudentID =528116,Term=1,TermName="Fall 2017",TermAbbrev ="F17"},
+new StudentTerm {StudentTermId =2,StudentID =528116,Term=2,TermName="Spring 2018",TermAbbrev ="SP18"},
+new StudentTerm {StudentTermId =3,StudentID =528116,Term=3,TermName="Summer 2018",TermAbbrev ="SU18"},
+new StudentTerm {StudentTermId =4,StudentID =528116,Term=4,TermName="Fall 2018",TermAbbrev ="F18"},
+new StudentTerm {StudentTermId =5,StudentID =528116,Term=5,TermName="Spring 2019",TermAbbrev ="SP19"},
+new StudentTerm {StudentTermId =1,StudentID =530473,Term=1,TermName="Spring 2018",TermAbbrev ="SP18"},
+new StudentTerm {StudentTermId =2,StudentID =530473,Term=2,TermName="Summer 2018",TermAbbrev ="SU18"},
+new StudentTerm {StudentTermId =3,StudentID =530473,Term=3,TermName="Fall 2018",TermAbbrev ="F18"},
+new StudentTerm {StudentTermId =4,StudentID =530473,Term=4,TermName="Spring 2019",TermAbbrev ="SP19"},
+new StudentTerm {StudentTermId =5,StudentID =530473,Term=5,TermName="Summer 2019",TermAbbrev ="SU19"},
+new StudentTerm {StudentTermId =1,StudentID =533909,Term=1,TermName="Fall 2019",TermAbbrev ="F19"},
+new StudentTerm {StudentTermId =2,StudentID =533909,Term=2,TermName="Spring 2020",TermAbbrev ="SP20"},
+new StudentTerm {StudentTermId =3,StudentID =533909,Term=3,TermName="Summer 2020",TermAbbrev ="SU20"},
+new StudentTerm {StudentTermId =4,StudentID =533909,Term=4,TermName="Fall 2020",TermAbbrev ="F20"},
+new StudentTerm {StudentTermId =5,StudentID =533909,Term=5,TermName="Spring 2021",TermAbbrev ="SP21"},
+new StudentTerm {StudentTermId =1,StudentID =533570,Term=1,TermName="Fall 2017",TermAbbrev ="F17"},
+new StudentTerm {StudentTermId =2,StudentID =533570,Term=2,TermName="Spring 2018",TermAbbrev ="SP18"},
+new StudentTerm {StudentTermId =3,StudentID =533570,Term=3,TermName="Summer 2018",TermAbbrev ="SU18"},
+new StudentTerm {StudentTermId =4,StudentID =533570,Term=4,TermName="Fall 2018",TermAbbrev ="F18"},
+new StudentTerm {StudentTermId =5,StudentID =533570,Term=5,TermName="Spring 2019",TermAbbrev ="SP19"},
+new StudentTerm {StudentTermId =1,StudentID =531372,Term=1,TermName="Fall 2018",TermAbbrev ="F18"},
+new StudentTerm {StudentTermId =2,StudentID =531372,Term=2,TermName="Spring 2019",TermAbbrev ="SP19"},
+new StudentTerm {StudentTermId =3,StudentID =531372,Term=3,TermName="Summer 2019",TermAbbrev ="SU19"},
+new StudentTerm {StudentTermId =4,StudentID =531372,Term=4,TermName="Fall 2019",TermAbbrev ="F19"},
+new StudentTerm {StudentTermId =5,StudentID =531372,Term=5,TermName="Spring 2020",TermAbbrev ="SP20"},
+
+
+
+            };
+            Console.WriteLine($"Inserted {studentTerm.Length} new StudentTerm");
+            foreach (StudentTerm st in studentTerm)
+            {
+                context.StudentTerms.Add(st);
+            }
+            context.SaveChanges();
+
 
         }
     }
