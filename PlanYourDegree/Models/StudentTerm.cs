@@ -22,6 +22,10 @@ namespace PlanYourDegree.Models
         [Required]
         [MaxLength(10)]
         public String TermAbbrev { get; set; }
+
         public ICollection<Student> Students { get; set; }
+
+
+
     }
 }
