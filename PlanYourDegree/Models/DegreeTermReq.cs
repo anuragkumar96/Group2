@@ -15,7 +15,7 @@ namespace PlanYourDegree.Models
         [Required]
        public int DegreePlanID { get; set; }
         [Required]
-        public int TermID { get; set; }
+        public int StudentTermID { get; set; }
         [Required]
         public int CourseId { get; set; }
 
