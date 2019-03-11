@@ -186,7 +186,7 @@ namespace PlanYourDegree.Migrations
 
             modelBuilder.Entity("PlanYourDegree.Models.Course", b =>
                 {
-                    b.Property<int>("CourseID");
+                    b.Property<int>("CourseId");
 
                     b.Property<string>("CourseAbbrev")
                         .IsRequired()
@@ -195,22 +195,22 @@ namespace PlanYourDegree.Migrations
                     b.Property<string>("CourseName")
                         .IsRequired();
 
-                    b.Property<int?>("DegreeReqID");
+                    b.Property<int?>("DegreeReqId");
 
-                    b.Property<int?>("DegreeTermReqID");
+                    b.Property<int?>("DegreeTermReqId");
 
-                    b.HasKey("CourseID");
+                    b.HasKey("CourseId");
 
-                    b.HasIndex("DegreeReqID");
+                    b.HasIndex("DegreeReqId");
 
-                    b.HasIndex("DegreeTermReqID");
+                    b.HasIndex("DegreeTermReqId");
 
                     b.ToTable("Course");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.Degree", b =>
                 {
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
                     b.Property<string>("DegreeAbbrive")
                         .IsRequired()
@@ -220,24 +220,24 @@ namespace PlanYourDegree.Migrations
                         .IsRequired()
                         .HasMaxLength(40);
 
-                    b.Property<int?>("DegreePlanID");
+                    b.Property<int?>("DegreePlanId");
 
-                    b.Property<int?>("DegreeReqID");
+                    b.Property<int?>("DegreeReqId");
 
-                    b.HasKey("DegreeID");
+                    b.HasKey("DegreeId");
 
-                    b.HasIndex("DegreePlanID");
+                    b.HasIndex("DegreePlanId");
 
-                    b.HasIndex("DegreeReqID");
+                    b.HasIndex("DegreeReqId");
 
                     b.ToTable("Degree");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.DegreePlan", b =>
                 {
-                    b.Property<int>("DegreePlanID");
+                    b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
                     b.Property<string>("DegreePlanAbbreve")
                         .IsRequired()
@@ -246,50 +246,50 @@ namespace PlanYourDegree.Migrations
                     b.Property<string>("DegreePlanName")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("DegreeTermReqID");
+                    b.Property<int?>("DegreeTermReqId");
 
-                    b.Property<int>("StudentID");
+                    b.Property<int>("StudentId");
 
-                    b.HasKey("DegreePlanID");
+                    b.HasKey("DegreePlanId");
 
-                    b.HasIndex("DegreeTermReqID");
+                    b.HasIndex("DegreeTermReqId");
 
                     b.ToTable("DegreePlan");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.DegreeReq", b =>
                 {
-                    b.Property<int>("DegreeReqID");
+                    b.Property<int>("DegreeReqId");
 
-                    b.Property<int>("CourseID");
+                    b.Property<int>("CourseId");
 
-                    b.Property<int>("DegreeID");
+                    b.Property<int>("DegreeId");
 
-                    b.HasKey("DegreeReqID");
+                    b.HasKey("DegreeReqId");
 
                     b.ToTable("DegreeReq");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.DegreeTermReq", b =>
                 {
-                    b.Property<int>("DegreeTermReqID");
+                    b.Property<int>("DegreeTermReqId");
 
                     b.Property<int>("CourseId");
 
-                    b.Property<int>("DegreePlanID");
+                    b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("StudentTermID");
+                    b.Property<int>("StudentTermId");
 
-                    b.HasKey("DegreeTermReqID");
+                    b.HasKey("DegreeTermReqId");
 
                     b.ToTable("DegreeTermReq");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.Student", b =>
                 {
-                    b.Property<int>("StudentID");
+                    b.Property<int>("StudentId");
 
-                    b.Property<int?>("DegreePlanID");
+                    b.Property<int?>("DegreePlanId");
 
                     b.Property<string>("FirstName")
                         .IsRequired();
@@ -302,9 +302,9 @@ namespace PlanYourDegree.Migrations
 
                     b.Property<int?>("StudentTermId");
 
-                    b.HasKey("StudentID");
+                    b.HasKey("StudentId");
 
-                    b.HasIndex("DegreePlanID");
+                    b.HasIndex("DegreePlanId");
 
                     b.HasIndex("StudentTermId");
 
@@ -315,9 +315,9 @@ namespace PlanYourDegree.Migrations
                 {
                     b.Property<int>("StudentTermId");
 
-                    b.Property<int?>("DegreeTermReqID");
+                    b.Property<int?>("DegreeTermReqId");
 
-                    b.Property<int>("StudentID");
+                    b.Property<int>("StudentId");
 
                     b.Property<int>("Term");
 
@@ -331,7 +331,7 @@ namespace PlanYourDegree.Migrations
 
                     b.HasKey("StudentTermId");
 
-                    b.HasIndex("DegreeTermReqID");
+                    b.HasIndex("DegreeTermReqId");
 
                     b.ToTable("StudentTerm");
                 });
@@ -385,36 +385,36 @@ namespace PlanYourDegree.Migrations
                 {
                     b.HasOne("PlanYourDegree.Models.DegreeReq")
                         .WithMany("Courses")
-                        .HasForeignKey("DegreeReqID");
+                        .HasForeignKey("DegreeReqId");
 
                     b.HasOne("PlanYourDegree.Models.DegreeTermReq")
                         .WithMany("Courses")
-                        .HasForeignKey("DegreeTermReqID");
+                        .HasForeignKey("DegreeTermReqId");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.Degree", b =>
                 {
                     b.HasOne("PlanYourDegree.Models.DegreePlan")
                         .WithMany("Degrees")
-                        .HasForeignKey("DegreePlanID");
+                        .HasForeignKey("DegreePlanId");
 
                     b.HasOne("PlanYourDegree.Models.DegreeReq")
                         .WithMany("Degrees")
-                        .HasForeignKey("DegreeReqID");
+                        .HasForeignKey("DegreeReqId");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.DegreePlan", b =>
                 {
                     b.HasOne("PlanYourDegree.Models.DegreeTermReq")
                         .WithMany("DegreePlans")
-                        .HasForeignKey("DegreeTermReqID");
+                        .HasForeignKey("DegreeTermReqId");
                 });
 
             modelBuilder.Entity("PlanYourDegree.Models.Student", b =>
                 {
                     b.HasOne("PlanYourDegree.Models.DegreePlan")
                         .WithMany("Students")
-                        .HasForeignKey("DegreePlanID");
+                        .HasForeignKey("DegreePlanId");
 
                     b.HasOne("PlanYourDegree.Models.StudentTerm")
                         .WithMany("Students")
@@ -425,7 +425,7 @@ namespace PlanYourDegree.Migrations
                 {
                     b.HasOne("PlanYourDegree.Models.DegreeTermReq")
                         .WithMany("StudentTerms")
-                        .HasForeignKey("DegreeTermReqID");
+                        .HasForeignKey("DegreeTermReqId");
                 });
 #pragma warning restore 612, 618
         }
