@@ -10,7 +10,7 @@ namespace PlanYourDegree.Models
     public class Course
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int CourseID { get; set; }
+        public int CourseId { get; set; }
         [Required]
         [MaxLength(10)]
         public string CourseAbbrev { get; set; }

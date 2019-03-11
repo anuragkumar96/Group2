@@ -11,7 +11,7 @@ namespace PlanYourDegree.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
-        public int StudentID { get; set; }
+        public int StudentId { get; set; }
         [Required]
         public String FirstName { get; set; }
         [Required]

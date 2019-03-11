@@ -12,11 +12,11 @@ namespace PlanYourDegree.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
-        public int DegreeReqID { get; set; }
+        public int DegreeReqId { get; set; }
         [Required]
-        public int DegreeID { get; set; }
+        public int DegreeId { get; set; }
         [Required]
-        public int CourseID { get; set; }
+        public int CourseId { get; set; }
 
         public ICollection<Degree> Degrees { get; set; }
         public ICollection<Course> Courses { get; set; }
