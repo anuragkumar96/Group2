@@ -13,15 +13,22 @@ namespace PlanYourDegree.Models
         [Required]
         public int DegreeTermReqId { get; set; }
         [Required]
+        [ForeignKey("DegreePlan")]
        public int DegreePlanId { get; set; }
         [Required]
+        [ForeignKey("StudentTerm")]
         public int StudentTermId { get; set; }
         [Required]
+        [ForeignKey("Course")]
         public int CourseId { get; set; }
 
-        public ICollection<DegreePlan> DegreePlans { get; set; }
+        public DegreePlan DegreePlan { get; set; }
+        public Course Course { get; set; }
+       // public StudentTerm StudentTerm { get; set; }
+
+        //public ICollection<DegreePlan> DegreePlans { get; set; }
         public ICollection<StudentTerm> StudentTerms { get; set; }
-        public ICollection<Course> Courses { get; set; }
+        //public ICollection<Course> Courses { get; set; }
 
 
 

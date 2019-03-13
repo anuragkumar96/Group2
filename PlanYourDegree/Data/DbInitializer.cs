@@ -36,6 +36,7 @@ namespace PlanYourDegree.Data
                 //Course
                 var courses = new Course[]
                     {
+                    new Course{CourseId=0, CourseAbbrev="NA", CourseName="Not Registored"},
                     new Course{CourseId=460, CourseAbbrev="DB", CourseName="44-460 Database Systems"},
                     new Course{CourseId=356, CourseAbbrev="NF", CourseName="44-356 Network Fundamentals"},
                     new Course{CourseId=542, CourseAbbrev="OOP", CourseName="44-542 Object-Oriented Programming"},
@@ -56,6 +57,8 @@ namespace PlanYourDegree.Data
                     context.Courses.Add(c);
                 }
                 context.SaveChanges();
+
+               
 
                 //DegreeReq
 
@@ -83,12 +86,103 @@ namespace PlanYourDegree.Data
                 context.SaveChanges();
 
 
+                //Student
 
-                //DegreeTermReq
-
-
-                var degreeTermsReq = new DegreeTermReq[]
+                var students = new Student[]
                   {
+                  new Student {StudentId=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=91955040},
+                  new Student {StudentId=530473,FirstName="Ujjawal",LastName="Kumar",NineOneNine=919562997},
+                  new Student {StudentId=533909,FirstName="Meghana",LastName="Putta",NineOneNine=919570037},
+                  new Student {StudentId=533570,FirstName="Keerthi sree",LastName="Kukunoor",NineOneNine=919569706},
+                  new Student {StudentId=531372,FirstName="Anurag",LastName="Kumar",NineOneNine=919562995}
+
+                  };
+                Console.WriteLine($"Inserted {students.Length} new Students");
+                foreach (Student s in students)
+                {
+                    context.Students.Add(s);
+                }
+                context.SaveChanges();
+
+
+                //DegreePlan
+
+
+                var degreePlans = new DegreePlan[]
+                  {
+                new DegreePlan {DegreePlanId=101,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+                new DegreePlan {DegreePlanId=102,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=103,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+                new DegreePlan {DegreePlanId=104,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=105,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+                new DegreePlan {DegreePlanId=106,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=107,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+                new DegreePlan {DegreePlanId=108,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=109,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
+                new DegreePlan {DegreePlanId=110,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"}
+
+                  };
+                Console.WriteLine($"Inserted {degreePlans.Length} new DegreePlan");
+                foreach (DegreePlan dp in degreePlans)
+                {
+                    context.DegreePlans.Add(dp);
+                }
+                context.SaveChanges();
+
+
+
+               
+
+                //StudentTerm
+                if (context.StudentTerms.Any())
+                {
+                    Console.WriteLine("StudentTerms already exist.");
+                }
+                else
+                {
+                    var studentTerm = new StudentTerm[] {
+
+
+                new StudentTerm { StudentTermId = 1, StudentId = 528116, Term = 1, TermName = " Fall 2017 ", TermAbbrev = " F17 " },
+                new StudentTerm { StudentTermId = 2, StudentId = 528116, Term = 2, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
+                new StudentTerm { StudentTermId = 3, StudentId = 528116, Term = 3, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
+                new StudentTerm { StudentTermId = 4, StudentId = 528116, Term = 4, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
+                new StudentTerm { StudentTermId = 5, StudentId = 528116, Term = 5, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
+                new StudentTerm { StudentTermId = 6, StudentId = 530473, Term = 1, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
+                new StudentTerm { StudentTermId = 7, StudentId = 530473, Term = 2, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
+                new StudentTerm { StudentTermId = 8, StudentId = 530473, Term = 3, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
+                new StudentTerm { StudentTermId = 9, StudentId = 530473, Term = 4, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
+                new StudentTerm { StudentTermId = 10, StudentId = 530473, Term = 5, TermName = " Summer 2019 ", TermAbbrev = " SU19 " },
+                new StudentTerm { StudentTermId = 11, StudentId = 533909, Term = 1, TermName = " Fall 2019 ", TermAbbrev = " F19 " },
+                new StudentTerm { StudentTermId = 12, StudentId = 533909, Term = 2, TermName = " Spring 2020 ", TermAbbrev = " SP20 " },
+                new StudentTerm { StudentTermId = 13, StudentId = 533909, Term = 3, TermName = " Summer 2020 ", TermAbbrev = " SU20 " },
+                new StudentTerm { StudentTermId = 14, StudentId = 533909, Term = 4, TermName = " Fall 2020 ", TermAbbrev = " F20 " },
+                new StudentTerm { StudentTermId = 15, StudentId = 533909, Term = 5, TermName = " Spring 2021 ", TermAbbrev = " SP21 " },
+                new StudentTerm { StudentTermId = 16, StudentId = 533570, Term = 1, TermName = " Fall 2017 ", TermAbbrev = " F17 " },
+                new StudentTerm { StudentTermId = 17, StudentId = 533570, Term = 2, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
+                new StudentTerm { StudentTermId = 18, StudentId = 533570, Term = 3, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
+                new StudentTerm { StudentTermId = 19, StudentId = 533570, Term = 4, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
+                new StudentTerm { StudentTermId = 20, StudentId = 533570, Term = 5, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
+                new StudentTerm { StudentTermId = 21, StudentId = 531372, Term = 1, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
+                new StudentTerm { StudentTermId = 22, StudentId = 531372, Term = 2, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
+                new StudentTerm { StudentTermId = 23, StudentId = 531372, Term = 3, TermName = " Summer 2019 ", TermAbbrev = " SU19 " },
+                new StudentTerm { StudentTermId = 24, StudentId = 531372, Term = 4, TermName = " Fall 2019 ", TermAbbrev = " F19 " },
+                new StudentTerm { StudentTermId = 25, StudentId = 531372, Term = 5, TermName = " Spring 2020 ", TermAbbrev = " SP20 " },
+
+
+              };
+                Console.WriteLine($"Inserted {studentTerm.Length} new StudentTerm");
+                foreach (StudentTerm st in studentTerm)
+                {
+                    context.StudentTerms.Add(st);
+                }
+                context.SaveChanges();
+
+                    //DegreeTermReq
+
+
+                    var degreeTermsReq = new DegreeTermReq[]
+                      {
                 new DegreeTermReq{DegreeTermReqId=1,DegreePlanId =101,StudentTermId =1,CourseId=460},
                 new DegreeTermReq{DegreeTermReqId=3,DegreePlanId =101,StudentTermId =1,CourseId=542},
                 new DegreeTermReq{DegreeTermReqId=4,DegreePlanId =101,StudentTermId =1,CourseId=563},
@@ -227,106 +321,17 @@ namespace PlanYourDegree.Data
 
 
 
-                  };
-                Console.WriteLine($"Inserted {degreeTermsReq.Length} new DegreeTermReq");
-                foreach (DegreeTermReq dtr in degreeTermsReq)
-                {
-                    context.DegreeTermReqs.Add(dtr);
+                      };
+                    Console.WriteLine($"Inserted {degreeTermsReq.Length} new DegreeTermReq");
+                    foreach (DegreeTermReq dtr in degreeTermsReq)
+                    {
+                        context.DegreeTermReqs.Add(dtr);
+                    }
+                    context.SaveChanges();
+
+
+
                 }
-                context.SaveChanges();
-
-
-
-
-                //DegreePlan
-
-
-                var degreePlans = new DegreePlan[]
-                  {
-                new DegreePlan {DegreePlanId=101,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=102,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
-                new DegreePlan {DegreePlanId=103,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=104,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
-                new DegreePlan {DegreePlanId=105,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=106,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
-                new DegreePlan {DegreePlanId=107,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=108,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
-                new DegreePlan {DegreePlanId=109,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=110,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"}
-
-                  };
-                Console.WriteLine($"Inserted {degreePlans.Length} new DegreePlan");
-                foreach (DegreePlan dp in degreePlans)
-                {
-                    context.DegreePlans.Add(dp);
-                }
-                context.SaveChanges();
-
-
-
-                //Student
-
-                var students = new Student[]
-                  {
-                  new Student {StudentId=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=91955040},
-                  new Student {StudentId=530473,FirstName="Ujjawal",LastName="Kumar",NineOneNine=919562997},
-                  new Student {StudentId=533909,FirstName="Meghana",LastName="Putta",NineOneNine=919570037},
-                  new Student {StudentId=533570,FirstName="Keerthi sree",LastName="Kukunoor",NineOneNine=919569706},
-                  new Student {StudentId=531372,FirstName="Anurag",LastName="Kumar",NineOneNine=919562995}
-
-                  };
-                Console.WriteLine($"Inserted {students.Length} new Students");
-                foreach (Student s in students)
-                {
-                    context.Students.Add(s);
-                }
-                context.SaveChanges();
-
-                //StudentTerm
-                if (context.StudentTerms.Any())
-                {
-                    Console.WriteLine("StudentTerms already exist.");
-                }
-                else
-                {
-                    var studentTerm = new StudentTerm[] {
-
-
-                new StudentTerm { StudentTermId = 1, StudentId = 528116, Term = 1, TermName = " Fall 2017 ", TermAbbrev = " F17 " },
-                new StudentTerm { StudentTermId = 2, StudentId = 528116, Term = 2, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
-                new StudentTerm { StudentTermId = 3, StudentId = 528116, Term = 3, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
-                new StudentTerm { StudentTermId = 4, StudentId = 528116, Term = 4, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
-                new StudentTerm { StudentTermId = 5, StudentId = 528116, Term = 5, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
-                new StudentTerm { StudentTermId = 6, StudentId = 530473, Term = 1, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
-                new StudentTerm { StudentTermId = 7, StudentId = 530473, Term = 2, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
-                new StudentTerm { StudentTermId = 8, StudentId = 530473, Term = 3, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
-                new StudentTerm { StudentTermId = 9, StudentId = 530473, Term = 4, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
-                new StudentTerm { StudentTermId = 10, StudentId = 530473, Term = 5, TermName = " Summer 2019 ", TermAbbrev = " SU19 " },
-                new StudentTerm { StudentTermId = 11, StudentId = 533909, Term = 1, TermName = " Fall 2019 ", TermAbbrev = " F19 " },
-                new StudentTerm { StudentTermId = 12, StudentId = 533909, Term = 2, TermName = " Spring 2020 ", TermAbbrev = " SP20 " },
-                new StudentTerm { StudentTermId = 13, StudentId = 533909, Term = 3, TermName = " Summer 2020 ", TermAbbrev = " SU20 " },
-                new StudentTerm { StudentTermId = 14, StudentId = 533909, Term = 4, TermName = " Fall 2020 ", TermAbbrev = " F20 " },
-                new StudentTerm { StudentTermId = 15, StudentId = 533909, Term = 5, TermName = " Spring 2021 ", TermAbbrev = " SP21 " },
-                new StudentTerm { StudentTermId = 16, StudentId = 533570, Term = 1, TermName = " Fall 2017 ", TermAbbrev = " F17 " },
-                new StudentTerm { StudentTermId = 17, StudentId = 533570, Term = 2, TermName = " Spring 2018 ", TermAbbrev = " SP18 " },
-                new StudentTerm { StudentTermId = 18, StudentId = 533570, Term = 3, TermName = " Summer 2018 ", TermAbbrev = " SU18 " },
-                new StudentTerm { StudentTermId = 19, StudentId = 533570, Term = 4, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
-                new StudentTerm { StudentTermId = 20, StudentId = 533570, Term = 5, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
-                new StudentTerm { StudentTermId = 21, StudentId = 531372, Term = 1, TermName = " Fall 2018 ", TermAbbrev = " F18 " },
-                new StudentTerm { StudentTermId = 22, StudentId = 531372, Term = 2, TermName = " Spring 2019 ", TermAbbrev = " SP19 " },
-                new StudentTerm { StudentTermId = 23, StudentId = 531372, Term = 3, TermName = " Summer 2019 ", TermAbbrev = " SU19 " },
-                new StudentTerm { StudentTermId = 24, StudentId = 531372, Term = 4, TermName = " Fall 2019 ", TermAbbrev = " F19 " },
-                new StudentTerm { StudentTermId = 25, StudentId = 531372, Term = 5, TermName = " Spring 2020 ", TermAbbrev = " SP20 " },
-
-
-              };
-                Console.WriteLine($"Inserted {studentTerm.Length} new StudentTerm");
-                foreach (StudentTerm st in studentTerm)
-                {
-                    context.StudentTerms.Add(st);
-                }
-                context.SaveChanges();
-            }
             }
         }
     }

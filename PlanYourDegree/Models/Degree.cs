@@ -18,5 +18,8 @@ namespace PlanYourDegree.Models
         [MaxLength(40)]
         public string DegreeName { get; set; }
 
+        public ICollection<DegreePlan> DegreePlans { get; set; }
+        public ICollection<DegreeReq> DegreeReqs { get; set; }
+
     }
 }

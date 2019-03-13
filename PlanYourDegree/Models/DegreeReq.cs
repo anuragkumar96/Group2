@@ -14,12 +14,16 @@ namespace PlanYourDegree.Models
         [Required]
         public int DegreeReqId { get; set; }
         [Required]
+        [ForeignKey("Degree")]
         public int DegreeId { get; set; }
         [Required]
+        [ForeignKey("Course")]
         public int CourseId { get; set; }
 
-        public ICollection<Degree> Degrees { get; set;}
-        public ICollection<Course> Courses { get; set; }
+        public Degree Degree { get; set; }
+        public Course Course { get; set; }
+       // public ICollection<Degree> Degrees { get; set;}
+       // public ICollection<Course> Courses { get; set; }
 
 
     }

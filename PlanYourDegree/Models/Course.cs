@@ -17,6 +17,8 @@ namespace PlanYourDegree.Models
         [Required]
         public string CourseName { get; set; }
 
-
+        public ICollection<DegreeReq> DegreeReqs { get; set; }
+        public ICollection<DegreeTermReq> DegreeTermReqs { get; set; }
+        
     }
 }

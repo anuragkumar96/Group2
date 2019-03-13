@@ -14,8 +14,10 @@ namespace PlanYourDegree.Models
         [Required]
         public int DegreePlanId { get; set; }
         [Required]
+        [ForeignKey("Degree")]
         public int DegreeId { get; set; }
         [Required]
+        [ForeignKey("Student")]
         public int StudentId { get; set; }
         [Required]
         [MaxLength(20)]
@@ -23,9 +25,15 @@ namespace PlanYourDegree.Models
         [MaxLength(50)]
         public String DegreePlanName { get; set; }
 
-        public ICollection<Degree> Degrees { get; set; }
-        public ICollection<Student> Students { get; set; }
+        public Degree Degree { get; set; }
+        public Student Student { get; set; }
+
+        public ICollection<DegreeTermReq> DegreeTermReqs { get; set; }
+
+      //  public ICollection<Degree> Degrees { get; set; }
+      //  public ICollection<Student> Students { get; set; }
 
 
     }
 }
+

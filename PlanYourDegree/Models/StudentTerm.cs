@@ -13,6 +13,7 @@ namespace PlanYourDegree.Models
         [Required]
         public int StudentTermId { get; set; }
         [Required]
+        [ForeignKey("Student")]
         public int StudentId { get; set; }
         [Required]
         public int Term { get; set; }
@@ -23,7 +24,10 @@ namespace PlanYourDegree.Models
         [MaxLength(10)]
         public String TermAbbrev { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public Student Student { get; set; }
+       // public ICollection<StudentTerm> StudentTerms { get; set; }
+
+       // public ICollection<Student> Students { get; set; }
 
 
 
