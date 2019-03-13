@@ -20,8 +20,8 @@ namespace PlanYourDegree.Models
         public int CourseId { get; set; }
 
         public ICollection<DegreePlan> DegreePlans { get; set; }
+        public ICollection<StudentTerm> StudentTerms { get; set; }
         public ICollection<Course> Courses { get; set; }
-     public ICollection<StudentTerm> StudentTerms { get; set; }
 
 
 

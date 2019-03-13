@@ -18,7 +18,7 @@ namespace PlanYourDegree.Models
         [Required]
         public int CourseId { get; set; }
 
-        public ICollection<Degree> Degrees { get; set; }
+        public ICollection<Degree> Degrees { get; set;}
         public ICollection<Course> Courses { get; set; }
 
 

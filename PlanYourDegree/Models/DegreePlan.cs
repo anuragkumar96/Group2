@@ -24,8 +24,8 @@ namespace PlanYourDegree.Models
         public String DegreePlanName { get; set; }
 
         public ICollection<Degree> Degrees { get; set; }
-
         public ICollection<Student> Students { get; set; }
+
 
     }
 }

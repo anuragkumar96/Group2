@@ -17,5 +17,6 @@ namespace PlanYourDegree.Models
         [Required]
         [MaxLength(40)]
         public string DegreeName { get; set; }
+
     }
 }

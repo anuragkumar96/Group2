@@ -10,8 +10,8 @@ using PlanYourDegree.Data;
 namespace PlanYourDegree.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190311193002_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190313061153_InitialCreation")]
+    partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
