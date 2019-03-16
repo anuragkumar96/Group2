@@ -88,6 +88,19 @@ namespace PlanYourDegree.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Term",
+                columns: table => new
+                {
+                    TermId = table.Column<int>(nullable: false),
+                    TermAbbrev = table.Column<string>(nullable: true),
+                    TermName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Term", x => x.TermId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -251,7 +264,7 @@ namespace PlanYourDegree.Migrations
                 {
                     DegreeTermReqId = table.Column<int>(nullable: false),
                     DegreePlanId = table.Column<int>(nullable: false),
-                    StudentTermId = table.Column<int>(nullable: false),
+                    TermId = table.Column<int>(nullable: false),
                     CourseId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -269,33 +282,11 @@ namespace PlanYourDegree.Migrations
                         principalTable: "DegreePlan",
                         principalColumn: "DegreePlanId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StudentTerm",
-                columns: table => new
-                {
-                    StudentTermId = table.Column<int>(nullable: false),
-                    StudentId = table.Column<int>(nullable: false),
-                    Term = table.Column<int>(nullable: false),
-                    TermName = table.Column<string>(maxLength: 20, nullable: false),
-                    TermAbbrev = table.Column<string>(maxLength: 10, nullable: false),
-                    DegreeTermReqId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StudentTerm", x => x.StudentTermId);
                     table.ForeignKey(
-                        name: "FK_StudentTerm_DegreeTermReq_DegreeTermReqId",
-                        column: x => x.DegreeTermReqId,
-                        principalTable: "DegreeTermReq",
-                        principalColumn: "DegreeTermReqId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_StudentTerm_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "StudentId",
+                        name: "FK_DegreeTermReq_Term_TermId",
+                        column: x => x.TermId,
+                        principalTable: "Term",
+                        principalColumn: "TermId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -369,14 +360,9 @@ namespace PlanYourDegree.Migrations
                 column: "DegreePlanId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentTerm_DegreeTermReqId",
-                table: "StudentTerm",
-                column: "DegreeTermReqId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StudentTerm_StudentId",
-                table: "StudentTerm",
-                column: "StudentId");
+                name: "IX_DegreeTermReq_TermId",
+                table: "DegreeTermReq",
+                column: "TermId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -400,7 +386,7 @@ namespace PlanYourDegree.Migrations
                 name: "DegreeReq");
 
             migrationBuilder.DropTable(
-                name: "StudentTerm");
+                name: "DegreeTermReq");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -409,13 +395,13 @@ namespace PlanYourDegree.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "DegreeTermReq");
-
-            migrationBuilder.DropTable(
                 name: "Course");
 
             migrationBuilder.DropTable(
                 name: "DegreePlan");
+
+            migrationBuilder.DropTable(
+                name: "Term");
 
             migrationBuilder.DropTable(
                 name: "Degree");

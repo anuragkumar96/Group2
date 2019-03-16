@@ -10,22 +10,22 @@ using PlanYourDegree.Models;
 
 namespace PlanYourDegree.Controllers
 {
-    public class StudentTermsController : Controller
+    public class TermsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentTermsController(ApplicationDbContext context)
+        public TermsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: StudentTerms
+        // GET: Terms
         public async Task<IActionResult> Index()
         {
-            return View(await _context.StudentTerms.ToListAsync());
+            return View(await _context.Terms.ToListAsync());
         }
 
-        // GET: StudentTerms/Details/5
+        // GET: Terms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace PlanYourDegree.Controllers
                 return NotFound();
             }
 
-            var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermId == id);
-            if (studentTerm == null)
+            var term = await _context.Terms
+                .FirstOrDefaultAsync(m => m.TermId == id);
+            if (term == null)
             {
                 return NotFound();
             }
 
-            return View(studentTerm);
+            return View(term);
         }
 
-        // GET: StudentTerms/Create
+        // GET: Terms/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: StudentTerms/Create
+        // POST: Terms/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentTermId,StudentId,Term,TermName,TermAbbrev")] StudentTerm studentTerm)
+        public async Task<IActionResult> Create([Bind("TermId,TermAbbrev,TermName")] Term term)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(studentTerm);
+                _context.Add(term);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(studentTerm);
+            return View(term);
         }
 
-        // GET: StudentTerms/Edit/5
+        // GET: Terms/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace PlanYourDegree.Controllers
                 return NotFound();
             }
 
-            var studentTerm = await _context.StudentTerms.FindAsync(id);
-            if (studentTerm == null)
+            var term = await _context.Terms.FindAsync(id);
+            if (term == null)
             {
                 return NotFound();
             }
-            return View(studentTerm);
+            return View(term);
         }
 
-        // POST: StudentTerms/Edit/5
+        // POST: Terms/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StudentTermId,StudentId,Term,TermName,TermAbbrev")] StudentTerm studentTerm)
+        public async Task<IActionResult> Edit(int id, [Bind("TermId,TermAbbrev,TermName")] Term term)
         {
-            if (id != studentTerm.StudentTermId)
+            if (id != term.TermId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace PlanYourDegree.Controllers
             {
                 try
                 {
-                    _context.Update(studentTerm);
+                    _context.Update(term);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!StudentTermExists(studentTerm.StudentTermId))
+                    if (!TermExists(term.TermId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace PlanYourDegree.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(studentTerm);
+            return View(term);
         }
 
-        // GET: StudentTerms/Delete/5
+        // GET: Terms/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace PlanYourDegree.Controllers
                 return NotFound();
             }
 
-            var studentTerm = await _context.StudentTerms
-                .FirstOrDefaultAsync(m => m.StudentTermId == id);
-            if (studentTerm == null)
+            var term = await _context.Terms
+                .FirstOrDefaultAsync(m => m.TermId == id);
+            if (term == null)
             {
                 return NotFound();
             }
 
-            return View(studentTerm);
+            return View(term);
         }
 
-        // POST: StudentTerms/Delete/5
+        // POST: Terms/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var studentTerm = await _context.StudentTerms.FindAsync(id);
-            _context.StudentTerms.Remove(studentTerm);
+            var term = await _context.Terms.FindAsync(id);
+            _context.Terms.Remove(term);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool StudentTermExists(int id)
+        private bool TermExists(int id)
         {
-            return _context.StudentTerms.Any(e => e.StudentTermId == id);
+            return _context.Terms.Any(e => e.TermId == id);
         }
     }
 }

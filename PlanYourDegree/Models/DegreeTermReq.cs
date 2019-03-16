@@ -16,18 +16,19 @@ namespace PlanYourDegree.Models
         [ForeignKey("DegreePlan")]
        public int DegreePlanId { get; set; }
         [Required]
-        [ForeignKey("StudentTerm")]
-        public int StudentTermId { get; set; }
+        [ForeignKey("Term")]
+        public int TermId { get; set; }
         [Required]
         [ForeignKey("Course")]
         public int CourseId { get; set; }
 
         public DegreePlan DegreePlan { get; set; }
         public Course Course { get; set; }
+        public Term Term { get; set; }
        // public StudentTerm StudentTerm { get; set; }
 
         //public ICollection<DegreePlan> DegreePlans { get; set; }
-        public ICollection<StudentTerm> StudentTerms { get; set; }
+       // public ICollection<StudentTerm> StudentTerms { get; set; }
         //public ICollection<Course> Courses { get; set; }
 
 

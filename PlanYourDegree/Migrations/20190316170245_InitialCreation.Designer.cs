@@ -10,7 +10,7 @@ using PlanYourDegree.Data;
 namespace PlanYourDegree.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190313183603_InitialCreation")]
+    [Migration("20190316170245_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -268,13 +268,15 @@ namespace PlanYourDegree.Migrations
 
                     b.Property<int>("DegreePlanId");
 
-                    b.Property<int>("StudentTermId");
+                    b.Property<int>("TermId");
 
                     b.HasKey("DegreeTermReqId");
 
                     b.HasIndex("CourseId");
 
                     b.HasIndex("DegreePlanId");
+
+                    b.HasIndex("TermId");
 
                     b.ToTable("DegreeTermReq");
                 });
@@ -297,31 +299,17 @@ namespace PlanYourDegree.Migrations
                     b.ToTable("Student");
                 });
 
-            modelBuilder.Entity("PlanYourDegree.Models.StudentTerm", b =>
+            modelBuilder.Entity("PlanYourDegree.Models.Term", b =>
                 {
-                    b.Property<int>("StudentTermId");
+                    b.Property<int>("TermId");
 
-                    b.Property<int?>("DegreeTermReqId");
+                    b.Property<string>("TermAbbrev");
 
-                    b.Property<int>("StudentId");
+                    b.Property<string>("TermName");
 
-                    b.Property<int>("Term");
+                    b.HasKey("TermId");
 
-                    b.Property<string>("TermAbbrev")
-                        .IsRequired()
-                        .HasMaxLength(10);
-
-                    b.Property<string>("TermName")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.HasKey("StudentTermId");
-
-                    b.HasIndex("DegreeTermReqId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentTerm");
+                    b.ToTable("Term");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -406,17 +394,10 @@ namespace PlanYourDegree.Migrations
                         .WithMany("DegreeTermReqs")
                         .HasForeignKey("DegreePlanId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
 
-            modelBuilder.Entity("PlanYourDegree.Models.StudentTerm", b =>
-                {
-                    b.HasOne("PlanYourDegree.Models.DegreeTermReq")
-                        .WithMany("StudentTerms")
-                        .HasForeignKey("DegreeTermReqId");
-
-                    b.HasOne("PlanYourDegree.Models.Student", "Student")
-                        .WithMany("StudentTerms")
-                        .HasForeignKey("StudentId")
+                    b.HasOne("PlanYourDegree.Models.Term", "Term")
+                        .WithMany("DegreeTermReqs")
+                        .HasForeignKey("TermId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

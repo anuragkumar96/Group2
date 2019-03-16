@@ -22,6 +22,5 @@ namespace PlanYourDegree.Models
         public int NineOneNine { get; set; }
 
         public ICollection<DegreePlan> DegreePlans { get; set; }
-        public ICollection<StudentTerm> StudentTerms { get; set; }
     }
 }
