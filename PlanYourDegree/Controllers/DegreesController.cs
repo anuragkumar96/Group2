@@ -20,9 +20,46 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: Degrees
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Degrees.ToListAsync());
+            ViewData["DegreeIdParm"] = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "Id";
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
+            ViewData["NAbbreSortParm"] = String.IsNullOrEmpty(sortOrder) ? "abbre_desc" : "Abbre";
+            ViewData["CurrentFilter"] = searchString;
+
+           // ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            var degrees = from d in _context.Degrees
+                          select d;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degrees = degrees.Where(d => d.DegreeAbbrive.Contains(searchString) || d.DegreeName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "id_desc":
+                    degrees = degrees.OrderByDescending(d => d.DegreeId);
+                    break;
+                case "Name":
+                    degrees = degrees.OrderBy(d => d.DegreeName);
+                    break; 
+                case "name_desc":
+                    degrees = degrees.OrderByDescending(d => d.DegreeName);
+                    break;
+                case "abbre_desc":
+                    degrees = degrees.OrderByDescending(d => d.DegreeAbbrive);
+                    break;
+                case "Abbre":
+                        degrees = degrees.OrderBy(d => d.DegreeAbbrive);
+                    break;
+                case "Id":
+                default:
+                    degrees = degrees.OrderBy(d => d.DegreeId);
+                    break;
+               
+            }
+            return View(await degrees.AsNoTracking().ToListAsync());
+            //return View(await _context.Degrees.ToListAsync());
         }
 
         // GET: Degrees/Details/5
