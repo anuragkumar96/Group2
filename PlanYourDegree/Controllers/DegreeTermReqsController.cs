@@ -20,7 +20,7 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: DegreeTermReqs
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
             ViewData["DegreePlanIDParam"] = String.IsNullOrEmpty(sortOrder) ? "degreeplanid_desc" : "degreeplanid";
             ViewData["TermIDParam"] = String.IsNullOrEmpty(sortOrder) ? "termid_desc" : "termid";
@@ -28,6 +28,12 @@ namespace PlanYourDegree.Controllers
 
             var degreetermreq = from dtr in _context.DegreeTermReqs
                                 select dtr;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreetermreq = degreetermreq.Where(dtr => dtr.DegreeTermReqId.Equals(int.Parse(searchString))
+                                       || dtr.TermId.Equals(int.Parse(searchString))
+                                       || dtr.CourseId.Equals(int.Parse(searchString)));
+            }
 
             switch (sortOrder)
             {
