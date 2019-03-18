@@ -24,6 +24,7 @@
 <table class="table">
     <thead>
         <tr>
+           
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["DegreePlanIDParam"]">@Html.DisplayNameFor(model => model.DegreePlan)</a>
             </th>
@@ -39,22 +40,23 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DegreePlan.DegreePlanAbbreve)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Course.CourseAbbrev)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Term.TermId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DegreeTermReqId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.DegreeTermReqId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DegreeTermReqId">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.DegreePlan.DegreePlanId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Term.TermId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.DegreeTermReqId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.DegreeTermReqId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.DegreeTermReqId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
