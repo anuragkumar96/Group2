@@ -20,12 +20,18 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: DegreePlans
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder, string searchString)
         {
             ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "StudentID_desc" : "StudentID_asc";
             ViewData["DegreePlanIDParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreePlanID_desc" : "DegreePlanID_asc";
+            ViewData["CurrentFilter"] = searchString;
             var degreeplans = from dp in _context.DegreePlans
                            select dp;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreeplans = degreeplans.Where(dp => dp.StudentId.Equals(int.Parse(searchString))||
+                                        dp.DegreePlanId.Equals(int.Parse(searchString)));
+            }
             switch (sortOrder)
             {
                 case "StudentID_desc":
