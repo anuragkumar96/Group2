@@ -23,6 +23,7 @@ namespace PlanYourDegree.Controllers
         public async Task<IActionResult> Index(String sortOrder)
         {
             ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "StudentID_desc" : "StudentID_asc";
+            ViewData["DegreePlanIDParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreePlanID_desc" : "DegreePlanID_asc";
             var degreeplans = from dp in _context.DegreePlans
                            select dp;
             switch (sortOrder)
@@ -32,6 +33,12 @@ namespace PlanYourDegree.Controllers
                     break;
                 case "StudentID_asc":
                     degreeplans = degreeplans.OrderBy(dp => dp.StudentId);
+                    break;
+                case "DegreePlanID_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.DegreePlanId);
+                    break;
+                case "DegreePlanID_asc":
+                    degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanId);
                     break;
                 default:
                     degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanId);
