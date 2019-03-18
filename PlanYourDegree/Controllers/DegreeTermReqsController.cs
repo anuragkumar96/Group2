@@ -65,8 +65,9 @@ namespace PlanYourDegree.Controllers
 
             //            var applicationDbContext = _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term);
             //            return View(await applicationDbContext.ToListAsync());
-             return View(await _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term).ToListAsync());
-          //  return View(await degreetermreq.AsNoTracking().ToListAsync());
+             return View(await degreetermreq.AsNoTracking().Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term).ToListAsync());
+                   // return View(await degreetermreq.AsNoTracking().ToListAsync());
+            //  return View(await degreetermreq.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreeTermReqs/Details/5
