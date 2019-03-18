@@ -20,14 +20,20 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: Terms
-        public async Task<IActionResult> Index(String sortOrder)
+        public async Task<IActionResult> Index(String sortOrder,String searchString)
         {
             ViewData["TermAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "TermAbbrev_desc" : "TermAbbrev";
             ViewData["TermNameParm"] = String.IsNullOrEmpty(sortOrder) ? "TermName_desc" : "TermName";
+            ViewData["CurrentFilter"] = searchString;
 
             var terms = from t in _context.Terms
                            select t;
-            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                terms = terms.Where(t => t.TermAbbrev.Contains(searchString)
+                                       || t.TermName.Contains(searchString));
+            }
+
 
             switch (sortOrder)
             {
