@@ -20,10 +20,45 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: DegreeTermReqs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
-            var applicationDbContext = _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["DegreePlanIDParam"] = String.IsNullOrEmpty(sortOrder) ? "degreeplanid_desc" : "degreeplanid";
+            ViewData["TermIDParam"] = String.IsNullOrEmpty(sortOrder) ? "termid_desc" : "termid";
+            ViewData["CourseIDParam"] = String.IsNullOrEmpty(sortOrder) ? "courseid_desc" : "courseid";
+
+            var degreetermreq = from dtr in _context.DegreeTermReqs
+                                select dtr;
+
+            switch (sortOrder)
+            {
+                case "degreeplanid_desc":
+                    degreetermreq = degreetermreq.OrderByDescending(dtr => dtr.DegreePlanId);
+                    break;
+                case "degreeplanid":
+                    degreetermreq = degreetermreq.OrderBy(dtr => dtr.DegreePlanId);
+                    break;
+                case "termid_desc":
+                    degreetermreq = degreetermreq.OrderByDescending(dtr => dtr.TermId);
+                    break;
+                case "termid":
+                    degreetermreq = degreetermreq.OrderBy(dtr => dtr.TermId);
+                    break;
+                case "courseid_desc":
+                    degreetermreq = degreetermreq.OrderByDescending(dtr => dtr.CourseId);
+                    break;
+                case "courseid":
+                    degreetermreq = degreetermreq.OrderBy(dtr => dtr.CourseId);
+                    break;
+                default:
+                    degreetermreq = degreetermreq.OrderBy(dtr => dtr.DegreeTermReqId);
+                    break;
+            }
+
+
+            //            var applicationDbContext = _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term);
+            //            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term).ToListAsync());
+
         }
 
         // GET: DegreeTermReqs/Details/5
