@@ -20,10 +20,39 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: Terms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
-            return View(await _context.Terms.ToListAsync());
+            ViewData["TermAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "TermAbbrev_desc" : "TermAbbrev";
+            ViewData["TermNameParm"] = String.IsNullOrEmpty(sortOrder) ? "TermName_desc" : "TermName";
+
+            var terms = from t in _context.Terms
+                           select t;
+            
+
+            switch (sortOrder)
+            {
+                case "TermAbbrev_desc":
+                    terms = terms.OrderByDescending(t => t.TermAbbrev);
+                    break;
+                case "TermAbbrev":
+                    terms = terms.OrderBy(t => t.TermAbbrev);
+                    break;
+                case "TermName_desc":
+                    terms = terms.OrderByDescending(t => t.TermName);
+                    break;
+                case "TermName":
+                    terms = terms.OrderBy(t => t.TermName);
+                    break;
+
+                default:
+                    terms = terms.OrderBy(t => t.TermId);
+                    break;
+            }
+            return View(await terms.AsNoTracking().ToListAsync());
         }
+      
+               
+
 
         // GET: Terms/Details/5
         public async Task<IActionResult> Details(int? id)
