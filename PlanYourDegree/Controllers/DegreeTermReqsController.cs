@@ -28,6 +28,8 @@ namespace PlanYourDegree.Controllers
 
             var degreetermreq = from dtr in _context.DegreeTermReqs
                                 select dtr;
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 degreetermreq = degreetermreq.Where(dtr => dtr.DegreeTermReqId.Equals(int.Parse(searchString))
