@@ -13,10 +13,13 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.DegreePlanId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DegreeId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StudentId)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StudentIDParm"]"> @Html.DisplayNameFor(model => model.StudentId)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DegreePlanAbbreve)
@@ -31,10 +34,14 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.DegreePlanId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.DegreeId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StudentId)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DegreePlanAbbreve)
