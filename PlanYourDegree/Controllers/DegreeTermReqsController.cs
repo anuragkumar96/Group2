@@ -22,7 +22,8 @@ namespace PlanYourDegree.Controllers
         // GET: DegreeTermReqs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DegreeTermReqs.ToListAsync());
+            var applicationDbContext = _context.DegreeTermReqs.Include(d => d.Course).Include(d => d.DegreePlan).Include(d => d.Term);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: DegreeTermReqs/Details/5
@@ -34,6 +35,9 @@ namespace PlanYourDegree.Controllers
             }
 
             var degreeTermReq = await _context.DegreeTermReqs
+                .Include(d => d.Course)
+                .Include(d => d.DegreePlan)
+                .Include(d => d.Term)
                 .FirstOrDefaultAsync(m => m.DegreeTermReqId == id);
             if (degreeTermReq == null)
             {
@@ -46,6 +50,9 @@ namespace PlanYourDegree.Controllers
         // GET: DegreeTermReqs/Create
         public IActionResult Create()
         {
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseAbbrev");
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbreve");
+            ViewData["TermId"] = new SelectList(_context.Terms, "TermId", "TermId");
             return View();
         }
 
@@ -54,7 +61,7 @@ namespace PlanYourDegree.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreeTermReqId,DegreePlanId,StudentTermId,CourseId")] DegreeTermReq degreeTermReq)
+        public async Task<IActionResult> Create([Bind("DegreeTermReqId,DegreePlanId,TermId,CourseId")] DegreeTermReq degreeTermReq)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +69,9 @@ namespace PlanYourDegree.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseAbbrev", degreeTermReq.CourseId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbreve", degreeTermReq.DegreePlanId);
+            ViewData["TermId"] = new SelectList(_context.Terms, "TermId", "TermId", degreeTermReq.TermId);
             return View(degreeTermReq);
         }
 
@@ -78,6 +88,9 @@ namespace PlanYourDegree.Controllers
             {
                 return NotFound();
             }
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseAbbrev", degreeTermReq.CourseId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbreve", degreeTermReq.DegreePlanId);
+            ViewData["TermId"] = new SelectList(_context.Terms, "TermId", "TermId", degreeTermReq.TermId);
             return View(degreeTermReq);
         }
 
@@ -86,7 +99,7 @@ namespace PlanYourDegree.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DegreeTermReqId,DegreePlanId,StudentTermId,CourseId")] DegreeTermReq degreeTermReq)
+        public async Task<IActionResult> Edit(int id, [Bind("DegreeTermReqId,DegreePlanId,TermId,CourseId")] DegreeTermReq degreeTermReq)
         {
             if (id != degreeTermReq.DegreeTermReqId)
             {
@@ -113,6 +126,9 @@ namespace PlanYourDegree.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseAbbrev", degreeTermReq.CourseId);
+            ViewData["DegreePlanId"] = new SelectList(_context.DegreePlans, "DegreePlanId", "DegreePlanAbbreve", degreeTermReq.DegreePlanId);
+            ViewData["TermId"] = new SelectList(_context.Terms, "TermId", "TermId", degreeTermReq.TermId);
             return View(degreeTermReq);
         }
 
@@ -125,6 +141,9 @@ namespace PlanYourDegree.Controllers
             }
 
             var degreeTermReq = await _context.DegreeTermReqs
+                .Include(d => d.Course)
+                .Include(d => d.DegreePlan)
+                .Include(d => d.Term)
                 .FirstOrDefaultAsync(m => m.DegreeTermReqId == id);
             if (degreeTermReq == null)
             {
