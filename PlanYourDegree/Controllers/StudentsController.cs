@@ -16,13 +16,61 @@ namespace PlanYourDegree.Controllers
 
         public StudentsController(ApplicationDbContext context)
         {
+
             _context = context;
         }
 
         // GET: Students
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Students.ToListAsync());
+            ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "studentid_desc" : "studentid";
+            ViewData["FirstNameParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
+            ViewData["LastNameParm"] = String.IsNullOrEmpty(sortOrder) ? "lastname_desc" : "lastname";
+            ViewData["NineOneNineParm"] = String.IsNullOrEmpty(sortOrder) ? "nineonenine_desc" : "nineonenine";
+
+            var students = from s in _context.Students
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstName.Contains(searchString)
+                                       ||s.StudentId.Equals(int.Parse(searchString))
+                                       ||s.NineOneNine.Equals(int.Parse(searchString))
+                                       );
+            }
+            switch (sortOrder)
+            {
+                case "studentid_desc":
+                    students = students.OrderByDescending(s => s.StudentId);
+                    break;
+                case "studentid":
+                    students = students.OrderBy(s => s.StudentId);
+                    break;
+                case "firstname_desc":
+                    students = students.OrderByDescending(s => s.FirstName);
+                    break;
+                case "firstname":
+                    students = students.OrderBy(s => s.FirstName);
+                    break;
+                case "lastname_desc":
+                    students = students.OrderByDescending(s => s.LastName);
+                    break;
+                case "lastname":
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+                case "nineonenine_desc":
+                    students = students.OrderByDescending(s => s.NineOneNine);
+                    break;
+                case "nineonenine":
+                    students = students.OrderBy(s => s.NineOneNine);
+                    break;
+
+                default:
+                    students = students.OrderBy(s => s.LastName);
+                    break;
+            }
+            return View(await students.AsNoTracking().ToListAsync());
+            //  return View(await _context.Students.ToListAsync());
         }
 
         // GET: Students/Details/5

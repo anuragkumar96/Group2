@@ -7,24 +7,53 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlanYourDegree.Data;
 using PlanYourDegree.Models;
-
 namespace PlanYourDegree.Controllers
 {
     public class DegreeReqsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
         public DegreeReqsController(ApplicationDbContext context)
         {
             _context = context;
         }
-
         // GET: DegreeReqs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.DegreeReqs.ToListAsync());
-        }
+            ViewData["DegreeReqIdParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreeReqId_desc" : "DegreeReqId";
+        ViewData["DegreeIdParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreeId_desc" : "DegreeId";
+        ViewData["CourseIdParm"] = String.IsNullOrEmpty(sortOrder) ? "CourseId_desc" : "CourseId";
+        ViewData["CurrentFilter"] = searchString;
 
+            var degreeReqs = from dr in _context.DegreeReqs select dr;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreeReqs = degreeReqs.Where(dr => dr.DegreeId.Equals(int.Parse(searchString)) ||
+                dr.CourseId.Equals(int.Parse(searchString)) || dr.DegreeReqId.Equals(int.Parse(searchString)));
+            }
+            switch (sortOrder)
+            {
+                case "DegreeId_desc":
+                    degreeReqs = degreeReqs.OrderByDescending(dr => dr.DegreeId);
+                    break;
+                case "DegreeId":
+                    degreeReqs = degreeReqs.OrderBy(dr => dr.DegreeId);
+                    break;
+                case "CourseId_desc":
+                    degreeReqs = degreeReqs.OrderByDescending(dr => dr.CourseId);
+                    break;
+                case "CourseId":
+                    degreeReqs = degreeReqs.OrderBy(dr => dr.CourseId);
+                    break;
+                case "DegreeReqId_desc":
+                    degreeReqs = degreeReqs.OrderByDescending(dr => dr.DegreeReqId);
+                    break;
+                case "DegreeRequId":
+                default:
+                    degreeReqs = degreeReqs.OrderBy(dr => dr.DegreeReqId);
+                    break;
+            }
+            return View(await degreeReqs.AsNoTracking().ToListAsync());
+        }
         // GET: DegreeReqs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -32,29 +61,27 @@ namespace PlanYourDegree.Controllers
             {
                 return NotFound();
             }
-
             var degreeReq = await _context.DegreeReqs
-                .FirstOrDefaultAsync(m => m.DegreeReqId == id);
+            .FirstOrDefaultAsync(m => m.DegreeReqId == id);
             if (degreeReq == null)
             {
                 return NotFound();
             }
-
             return View(degreeReq);
         }
-
         // GET: DegreeReqs/Create
         public IActionResult Create()
         {
             return View();
         }
-
         // POST: DegreeReqs/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        // To protect from overposting attacks, please enable the specific properties
+        // you want to bind to, for
+ // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+ [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DegreeReqId,DegreeId,CourseId")] DegreeReq degreeReq)
+        public async Task<IActionResult> Create([Bind("DegreeReqId,DegreeId,CourseId"
+)] DegreeReq degreeReq)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +91,6 @@ namespace PlanYourDegree.Controllers
             }
             return View(degreeReq);
         }
-
         // GET: DegreeReqs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -72,7 +98,6 @@ namespace PlanYourDegree.Controllers
             {
                 return NotFound();
             }
-
             var degreeReq = await _context.DegreeReqs.FindAsync(id);
             if (degreeReq == null)
             {
@@ -80,19 +105,18 @@ namespace PlanYourDegree.Controllers
             }
             return View(degreeReq);
         }
-
         // POST: DegreeReqs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        // To protect from overposting attacks, please enable the specific properties
+        //you want to bind to, for
+ // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+ [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("DegreeReqId,DegreeId,CourseId")] DegreeReq degreeReq)
-        {
+ {
             if (id != degreeReq.DegreeReqId)
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -115,7 +139,6 @@ namespace PlanYourDegree.Controllers
             }
             return View(degreeReq);
         }
-
         // GET: DegreeReqs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -123,17 +146,14 @@ namespace PlanYourDegree.Controllers
             {
                 return NotFound();
             }
-
             var degreeReq = await _context.DegreeReqs
-                .FirstOrDefaultAsync(m => m.DegreeReqId == id);
+            .FirstOrDefaultAsync(m => m.DegreeReqId == id);
             if (degreeReq == null)
             {
                 return NotFound();
             }
-
             return View(degreeReq);
         }
-
         // POST: DegreeReqs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -144,7 +164,6 @@ namespace PlanYourDegree.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         private bool DegreeReqExists(int id)
         {
             return _context.DegreeReqs.Any(e => e.DegreeReqId == id);
