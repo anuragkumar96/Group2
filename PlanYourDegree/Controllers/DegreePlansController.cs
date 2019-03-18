@@ -20,9 +20,24 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: DegreePlans
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder)
         {
-            return View(await _context.DegreePlans.ToListAsync());
+            ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "StudentID_desc" : "StudentID_asc";
+            var degreeplans = from dp in _context.DegreePlans
+                           select dp;
+            switch (sortOrder)
+            {
+                case "StudentID_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.StudentId);
+                    break;
+                case "StudentID_asc":
+                    degreeplans = degreeplans.OrderBy(dp => dp.StudentId);
+                    break;
+                default:
+                    degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanId);
+                    break;
+            }
+            return View(await degreeplans.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreePlans/Details/5
