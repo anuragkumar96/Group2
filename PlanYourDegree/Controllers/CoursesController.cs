@@ -20,9 +20,35 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: Courses
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            return View(await _context.Courses.ToListAsync());
+            ViewData["CourseNameParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
+            ViewData["CourseAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "abbrev_desc" : "Abbrev";
+            ViewData["CurrentFilter"] = searchString;
+
+            var courses = from c in _context.Courses select c;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                courses = courses.Where(c => c.CourseAbbrev.Contains(searchString) ||
+                c.CourseName.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    courses = courses.OrderByDescending(c => c.CourseName);
+                    break;
+                case "abbrev_desc":
+                    courses = courses.OrderByDescending(c => c.CourseAbbrev);
+                    break;
+                case "Abbrev":
+                    courses = courses.OrderBy(c => c.CourseAbbrev);
+                    break;
+                case "Name":
+                default:                    
+                    courses = courses.OrderBy(c => c.CourseName);
+                    break;
+            }
+            return View(await courses.AsNoTracking().ToListAsync());
         }
 
         // GET: Courses/Details/5
