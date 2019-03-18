@@ -21,17 +21,31 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: Students
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-          //  ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "studentid_desc" : "studentid";
+            ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "studentid_desc" : "studentid";
             ViewData["FirstNameParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
             ViewData["LastNameParm"] = String.IsNullOrEmpty(sortOrder) ? "lastname_desc" : "lastname";
             ViewData["NineOneNineParm"] = String.IsNullOrEmpty(sortOrder) ? "nineonenine_desc" : "nineonenine";
 
             var students = from s in _context.Students
                            select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.LastName.Contains(searchString)
+                                       || s.FirstName.Contains(searchString)
+                                       ||s.StudentId.Equals(int.Parse(searchString))
+                                       ||s.NineOneNine.Equals(int.Parse(searchString))
+                                       );
+            }
             switch (sortOrder)
             {
+                case "studentid_desc":
+                    students = students.OrderByDescending(s => s.StudentId);
+                    break;
+                case "studentid":
+                    students = students.OrderBy(s => s.StudentId);
+                    break;
                 case "firstname_desc":
                     students = students.OrderByDescending(s => s.FirstName);
                     break;
