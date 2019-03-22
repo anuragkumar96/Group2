@@ -22,7 +22,7 @@ namespace PlanYourDegree.Controllers
         // GET: Courses
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["CourseNameParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "Name";
+            ViewData["CourseNameParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewData["CourseAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "abbrev_desc" : "Abbrev";
             ViewData["CurrentFilter"] = searchString;
 
