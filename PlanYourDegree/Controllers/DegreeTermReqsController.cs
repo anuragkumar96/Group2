@@ -34,7 +34,8 @@ namespace PlanYourDegree.Controllers
             {
                 degreetermreq = degreetermreq.Where(dtr => dtr.DegreeTermReqId.Equals(int.Parse(searchString))
                                        || dtr.TermId.Equals(int.Parse(searchString))
-                                       || dtr.CourseId.Equals(int.Parse(searchString)));
+                                       || dtr.CourseId.Equals(int.Parse(searchString))
+                                       || dtr.DegreePlanId.Equals(int.Parse(searchString)));
             }
 
             switch (sortOrder)

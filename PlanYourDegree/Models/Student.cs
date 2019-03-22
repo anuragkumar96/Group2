@@ -11,14 +11,16 @@ namespace PlanYourDegree.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
+        [Range(100000,999999)]
         public int StudentId { get; set; }
         [Required]
+        [MaxLength(20)]
         public String FirstName { get; set; }
         [Required]
+        [MaxLength(20)]
         public String LastName { get; set; }
-        [Required]
-        [MaxLength(9)]
-        [MinLength(9)]
+        [Required]        
+        [Range(919000000, 919999999)]
         public int NineOneNine { get; set; }
 
         public ICollection<DegreePlan> DegreePlans { get; set; }

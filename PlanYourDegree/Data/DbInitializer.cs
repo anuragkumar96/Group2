@@ -90,7 +90,7 @@ namespace PlanYourDegree.Data
 
                 var students = new Student[]
                   {
-                  new Student {StudentId=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=91955040},
+                  new Student {StudentId=528116,FirstName="Nilantha",LastName="Dambadeniya",NineOneNine=919550040},
                   new Student {StudentId=530473,FirstName="Ujjawal",LastName="Kumar",NineOneNine=919562997},
                   new Student {StudentId=533909,FirstName="Meghana",LastName="Putta",NineOneNine=919570037},
                   new Student {StudentId=533570,FirstName="Keerthi sree",LastName="Kukunoor",NineOneNine=919569706},
@@ -111,15 +111,15 @@ namespace PlanYourDegree.Data
                 var degreePlans = new DegreePlan[]
                   {
                 new DegreePlan {DegreePlanId=101,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=102,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=102,DegreeId =2,StudentId =528116,DegreePlanAbbreve ="Economy",DegreePlanName="Complete the degree Economically"},
                 new DegreePlan {DegreePlanId=103,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=104,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=104,DegreeId =2,StudentId =530473,DegreePlanAbbreve ="Economy",DegreePlanName="Complete the degree Economically"},
                 new DegreePlan {DegreePlanId=105,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=106,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=106,DegreeId =2,StudentId =533909,DegreePlanAbbreve ="Economy",DegreePlanName="Complete the degree Economically"},
                 new DegreePlan {DegreePlanId=107,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=108,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"},
+                new DegreePlan {DegreePlanId=108,DegreeId =2,StudentId =533570,DegreePlanAbbreve ="Economy",DegreePlanName="Complete the degree Economically"},
                 new DegreePlan {DegreePlanId=109,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the Degree ASAP"},
-                new DegreePlan {DegreePlanId=110,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Express",DegreePlanName="Complete the degree Economically"}
+                new DegreePlan {DegreePlanId=110,DegreeId =2,StudentId =531372,DegreePlanAbbreve ="Economy",DegreePlanName="Complete the degree Economically"}
 
                   };
                 Console.WriteLine($"Inserted {degreePlans.Length} new DegreePlan");
