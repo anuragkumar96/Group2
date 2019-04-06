@@ -23,10 +23,10 @@ namespace PlanYourDegree.Controllers
         // GET: Students
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "studentid_desc" : "studentid";
-            ViewData["FirstNameParm"] = String.IsNullOrEmpty(sortOrder) ? "firstname_desc" : "firstname";
-            ViewData["LastNameParm"] = String.IsNullOrEmpty(sortOrder) ? "lastname_desc" : "lastname";
-            ViewData["NineOneNineParm"] = String.IsNullOrEmpty(sortOrder) ? "nineonenine_desc" : "nineonenine";
+            ViewData["StudentIDParm"] = sortOrder== "studentid" ? "studentid_desc": "studentid";
+            ViewData["FirstNameParm"] = sortOrder== "firstname" ? "firstname_desc": "firstname";
+            ViewData["LastNameParm"] = sortOrder== "lastname" ? "lastname_desc": "lastname";
+            ViewData["NineOneNineParm"] = sortOrder == "nineonenine" ? "nineonenine_desc": "nineonenine";
 
             var students = from s in _context.Students
                            select s;
@@ -55,16 +55,13 @@ namespace PlanYourDegree.Controllers
                 case "lastname_desc":
                     students = students.OrderByDescending(s => s.LastName);
                     break;
-                case "lastname":
-                    students = students.OrderBy(s => s.LastName);
-                    break;
                 case "nineonenine_desc":
                     students = students.OrderByDescending(s => s.NineOneNine);
                     break;
                 case "nineonenine":
                     students = students.OrderBy(s => s.NineOneNine);
                     break;
-
+                case "lastname":
                 default:
                     students = students.OrderBy(s => s.LastName);
                     break;

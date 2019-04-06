@@ -22,8 +22,8 @@ namespace PlanYourDegree.Controllers
         // GET: Courses
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["CourseNameParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["CourseAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "abbrev_desc" : "Abbrev";
+            ViewData["CourseNameParm"] =sortOrder=="name" ? "name_desc" : "name";
+            ViewData["CourseAbbrevParm"] = sortOrder=="abbrev" ? "abbrev_desc" : "abbrev";
             ViewData["CurrentFilter"] = searchString;
 
             var courses = from c in _context.Courses select c;
@@ -37,13 +37,13 @@ namespace PlanYourDegree.Controllers
                 case "name_desc":
                     courses = courses.OrderByDescending(c => c.CourseName);
                     break;
+                case "abbrev":
+                    courses = courses.OrderBy(c => c.CourseAbbrev);
+                    break;
                 case "abbrev_desc":
                     courses = courses.OrderByDescending(c => c.CourseAbbrev);
                     break;
-                case "Abbrev":
-                    courses = courses.OrderBy(c => c.CourseAbbrev);
-                    break;
-                case "Name":
+                case "name":                   
                 default:                    
                     courses = courses.OrderBy(c => c.CourseName);
                     break;

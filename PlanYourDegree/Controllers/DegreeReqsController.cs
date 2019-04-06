@@ -19,10 +19,10 @@ namespace PlanYourDegree.Controllers
         // GET: DegreeReqs
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["DegreeReqIdParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreeReqId_desc" : "DegreeReqId";
-        ViewData["DegreeIdParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreeId_desc" : "DegreeId";
-        ViewData["CourseIdParm"] = String.IsNullOrEmpty(sortOrder) ? "CourseId_desc" : "CourseId";
-        ViewData["CurrentFilter"] = searchString;
+            ViewData["DegreeReqIdParm"] = sortOrder== "DegreeReqId" ? "DegreeReqId_desc" : "DegreeReqId";
+            ViewData["DegreeIdParm"] = sortOrder== "DegreeId" ? "DegreeId_desc" : "DegreeId";
+            ViewData["CourseIdParm"] = sortOrder == "CourseId" ? "CourseId_desc" : "CourseId";
+            ViewData["CurrentFilter"] = searchString;
 
             var degreeReqs = from dr in _context.DegreeReqs select dr;
             if (!String.IsNullOrEmpty(searchString))

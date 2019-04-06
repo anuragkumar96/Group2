@@ -22,8 +22,12 @@ namespace PlanYourDegree.Controllers
         // GET: DegreePlans
         public async Task<IActionResult> Index(String sortOrder, string searchString)
         {
-            ViewData["StudentIDParm"] = String.IsNullOrEmpty(sortOrder) ? "StudentID_desc" : "";
-            ViewData["DegreePlanIDParm"] = String.IsNullOrEmpty(sortOrder) ? "DegreePlanID_desc" : "DegreePlanID_asc";
+            ViewData["StudentIdParm"] = sortOrder== "StudentId" ? "StudentId_desc" : "StudentId";
+            ViewData["DegreePlanIdParm"] = sortOrder == "DegreePlanId" ? "DegreePlanId_desc" : "DegreePlanId";
+            ViewData["DegreeIdParm"] = sortOrder == "DegreeId"  ? "DegreeId_desc" : "DegreeId";
+            ViewData["DegreePlanAbbrevParm"] = sortOrder == "DegreePlanAbbrevId" ? "DegreePlanAbbrevId_desc" : "DegreePlanAbbrevId";
+            ViewData["DegreePlanNameParm"] = sortOrder== "DegreePlanName" ? "DegreePlanName_desc" : "DegreePlanName";
+
             ViewData["CurrentFilter"] = searchString;
             var degreeplans = from dp in _context.DegreePlans
                            select dp;
@@ -34,18 +38,34 @@ namespace PlanYourDegree.Controllers
             }
             switch (sortOrder)
             {
-                case "StudentID_desc":
-                    degreeplans = degreeplans.OrderByDescending(dp => dp.StudentId);
-                    break;
-                case "StudentID_asc":
+                case "StudentId":
                     degreeplans = degreeplans.OrderBy(dp => dp.StudentId);
                     break;
-                case "DegreePlanID_desc":
+                case "StudentId_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.StudentId);
+                    break;
+                case "DegreePlanId_desc":
                     degreeplans = degreeplans.OrderByDescending(dp => dp.DegreePlanId);
                     break;
-                case "DegreePlanID_asc":
-                    degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanId);
+                case "DegreeId":
+                    degreeplans = degreeplans.OrderBy(dp => dp.DegreeId);
                     break;
+                case "DegreeId_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.DegreeId);
+                    break;
+                case "DegreePlanAbbrevId":
+                    degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanAbbreve);
+                    break;
+                case "DegreePlanAbbrevId_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.DegreePlanAbbreve);
+                    break;
+                case "DegreePlanNam":
+                    degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanName);
+                    break;
+                case "DegreePlanName_desc":
+                    degreeplans = degreeplans.OrderByDescending(dp => dp.DegreePlanName);
+                    break;
+                case "DegreePlanId":
                 default:
                     degreeplans = degreeplans.OrderBy(dp => dp.DegreePlanId);
                     break;

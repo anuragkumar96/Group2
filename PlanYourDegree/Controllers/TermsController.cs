@@ -22,8 +22,8 @@ namespace PlanYourDegree.Controllers
         // GET: Terms
         public async Task<IActionResult> Index(String sortOrder,String searchString)
         {
-            ViewData["TermAbbrevParm"] = String.IsNullOrEmpty(sortOrder) ? "TermAbbrev_desc" : "TermAbbrev";
-            ViewData["TermNameParm"] = String.IsNullOrEmpty(sortOrder) ? "TermName_desc" : "TermName";
+            ViewData["TermAbbrevParm"] = sortOrder == "TermAbbrev" ? "TermAbbrev_desc" : "TermAbbrev";
+            ViewData["TermNameParm"] = sortOrder == "TermName" ? "TermName_desc" : "TermName";
             ViewData["CurrentFilter"] = searchString;
 
             var terms = from t in _context.Terms

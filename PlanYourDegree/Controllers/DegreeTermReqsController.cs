@@ -22,9 +22,9 @@ namespace PlanYourDegree.Controllers
         // GET: DegreeTermReqs
         public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
-            ViewData["DegreePlanIDParam"] = String.IsNullOrEmpty(sortOrder) ? "degreeplanid_desc" : "degreeplanid";
-            ViewData["TermIDParam"] = String.IsNullOrEmpty(sortOrder) ? "termid_desc" : "termid";
-            ViewData["CourseIDParam"] = String.IsNullOrEmpty(sortOrder) ? "courseid_desc" : "courseid";
+            ViewData["DegreePlanIDParam"] = sortOrder == "degreeplanid" ? "degreeplanid_desc" : "degreeplanid";
+            ViewData["TermIDParam"] = sortOrder == "termid" ? "termid_desc" : "termid";
+            ViewData["CourseIDParam"] = sortOrder== "courseid" ? "courseid_desc" : "courseid";
 
             var degreetermreq = from dtr in _context.DegreeTermReqs
                                 select dtr;
