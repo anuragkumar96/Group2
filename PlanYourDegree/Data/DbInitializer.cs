@@ -64,18 +64,45 @@ namespace PlanYourDegree.Data
 
                 var degreeReq = new DegreeReq[]
                   {
-                new DegreeReq{DegreeReqId=101,DegreeId =2,CourseId =460},
-                new DegreeReq{DegreeReqId=102,DegreeId =2,CourseId =542},
-                new DegreeReq{DegreeReqId=103,DegreeId =2,CourseId =563},
-                new DegreeReq{DegreeReqId=104,DegreeId =2,CourseId =560},
-                new DegreeReq{DegreeReqId=105,DegreeId =2,CourseId =555},
-                new DegreeReq{DegreeReqId=106,DegreeId =2,CourseId =618},
-                new DegreeReq{DegreeReqId=107,DegreeId =2,CourseId =1},
-                new DegreeReq{DegreeReqId=108,DegreeId =2,CourseId =664},
-                new DegreeReq{DegreeReqId=109,DegreeId =2,CourseId =691},
-                new DegreeReq{DegreeReqId=110,DegreeId =2,CourseId =692},
-                new DegreeReq{DegreeReqId=111,DegreeId =2,CourseId =10},
-                new DegreeReq{DegreeReqId=112,DegreeId =2,CourseId =20}
+                    new DegreeReq{DegreeReqId=101,DegreeId =2,CourseId =460,RequirementNumber=1,CourseName="44-460 Database Systems"},
+                    new DegreeReq{DegreeReqId=102,DegreeId =2,CourseId =542,RequirementNumber=2,CourseName="44-542 Object-Oriented Programming"},
+                    new DegreeReq{DegreeReqId=103,DegreeId =2,CourseId =563,RequirementNumber=3,CourseName="44-563Developing Web Applications and Services"},
+                    new DegreeReq{DegreeReqId=104,DegreeId =2,CourseId =560,RequirementNumber=4,CourseName="44-560Advanced Topics in Database Systems"},
+                    new DegreeReq{DegreeReqId=105,DegreeId =2,CourseId =555,RequirementNumber=5,CourseName="44-555Network Security"},
+                    new DegreeReq{DegreeReqId=106,DegreeId =2,CourseId =618,RequirementNumber=6,CourseName="44-618Project Management in Business and Technology"},
+                    new DegreeReq{DegreeReqId=107,DegreeId =2,CourseId =1,RequirementNumber=7,CourseName="1 	Mobile Computing"},
+                    new DegreeReq{DegreeReqId=108,DegreeId =2,CourseId =664,RequirementNumber=8,CourseName="44-664User Experience Design"},
+                    new DegreeReq{DegreeReqId=109,DegreeId =2,CourseId =691,RequirementNumber=9,CourseName="44-691CS Graduate Directed Project I"},
+                    new DegreeReq{DegreeReqId=110,DegreeId =2,CourseId =692,RequirementNumber=10,CourseName="44-692CS Graduate Directed Project II"},
+                    new DegreeReq{DegreeReqId=111,DegreeId =2,CourseId =10,RequirementNumber=11,CourseName="10Advisor Approved Elective-I"},
+                    new DegreeReq{DegreeReqId=112,DegreeId =2,CourseId =20,RequirementNumber=12,CourseName="20Advisor Approved Elective-II"}
+                  /*  new DegreeReq{DegreeReqId=113,DegreeId =1,CourseId =356,RequirementNumber=1,CourseName="44-356 Network Fundamentals"},
+                    new DegreeReq{DegreeReqId=114,DegreeId =1,CourseId =460,RequirementNumber=2,CourseName="44-460 Database Systems"},
+                    new DegreeReq{DegreeReqId=115,DegreeId =1,CourseId =542,RequirementNumber=3,CourseName="44-542 Object-Oriented Programming"},
+                    new DegreeReq{DegreeReqId=116,DegreeId =1,CourseId =563,RequirementNumber=4,CourseName="44-563Developing Web Applications and Services"},
+                    new DegreeReq{DegreeReqId=117,DegreeId =1,CourseId =560,RequirementNumber=5,CourseName="44-560Advanced Topics in Database Systems"},
+                    new DegreeReq{DegreeReqId=118,DegreeId =1,CourseId =555,RequirementNumber=6,CourseName="44-555Network Security"},
+                    new DegreeReq{DegreeReqId=119,DegreeId =1,CourseId =618,RequirementNumber=7,CourseName="44-618Project Management in Business and Technology"},
+                    new DegreeReq{DegreeReqId=120,DegreeId =1,CourseId =1,RequirementNumber=8,CourseName="1 	Mobile Computing"},
+                    new DegreeReq{DegreeReqId=121,DegreeId =1,CourseId =664,RequirementNumber=9,CourseName="44-664User Experience Design"},
+                    new DegreeReq{DegreeReqId=122,DegreeId =1,CourseId =691,RequirementNumber=10,CourseName="44-691CS Graduate Directed Project I"},
+                    new DegreeReq{DegreeReqId=123,DegreeId =1,CourseId =692,RequirementNumber=11,CourseName="44-692CS Graduate Directed Project II"},
+                    new DegreeReq{DegreeReqId=124,DegreeId =1,CourseId =10,RequirementNumber=12,CourseName="10Advisor Approved Elective-I"},
+                    new DegreeReq{DegreeReqId=125,DegreeId =1,CourseId =20,RequirementNumber=13,CourseName="20Advisor Approved Elective-II"}  */
+
+
+            //    new DegreeReq{DegreeReqId=101,DegreeId =2,CourseId =460},
+              //  new DegreeReq{DegreeReqId=102,DegreeId =2,CourseId =542},
+             //   new DegreeReq{DegreeReqId=103,DegreeId =2,CourseId =563},
+             //   new DegreeReq{DegreeReqId=104,DegreeId =2,CourseId =560},
+             //   new DegreeReq{DegreeReqId=105,DegreeId =2,CourseId =555},
+             //   new DegreeReq{DegreeReqId=106,DegreeId =2,CourseId =618},
+             //   new DegreeReq{DegreeReqId=107,DegreeId =2,CourseId =1},
+             //   new DegreeReq{DegreeReqId=108,DegreeId =2,CourseId =664},
+              //  new DegreeReq{DegreeReqId=109,DegreeId =2,CourseId =691},
+             //   new DegreeReq{DegreeReqId=110,DegreeId =2,CourseId =692},
+             //   new DegreeReq{DegreeReqId=111,DegreeId =2,CourseId =10},
+             //   new DegreeReq{DegreeReqId=112,DegreeId =2,CourseId =20}
 
                   };
                 Console.WriteLine($"Inserted {degreeReq.Length} new DegreeReq");

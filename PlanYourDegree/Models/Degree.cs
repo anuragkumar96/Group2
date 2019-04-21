@@ -21,5 +21,13 @@ namespace PlanYourDegree.Models
         public ICollection<DegreePlan> DegreePlans { get; set; }
         public ICollection<DegreeReq> DegreeReqs { get; set; }
 
+        public override string ToString()
+        {
+            return base.ToString() + ": " +
+              "DegreeId = " + DegreeId +
+              ", DegreeAbbrev = " + DegreeAbbrive +
+              ", DegreeName = " + DegreeName +
+              "";
+        }
     }
 }

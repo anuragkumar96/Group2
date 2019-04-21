@@ -70,8 +70,11 @@ namespace PlanYourDegree.Controllers
                 return NotFound();
             }
 
+            //     var degree = await _context.Degrees
+            //        .FirstOrDefaultAsync(m => m.DegreeId == id);
             var degree = await _context.Degrees
-                .FirstOrDefaultAsync(m => m.DegreeId == id);
+            .Include(d => d.DegreeReqs)
+            .SingleOrDefaultAsync(m => m.DegreeId == id);
             if (degree == null)
             {
                 return NotFound();

@@ -193,7 +193,8 @@ namespace PlanYourDegree.Migrations
                         .HasMaxLength(10);
 
                     b.Property<string>("CourseName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(70);
 
                     b.HasKey("CourseId");
 
@@ -247,7 +248,11 @@ namespace PlanYourDegree.Migrations
 
                     b.Property<int>("CourseId");
 
+                    b.Property<string>("CourseName");
+
                     b.Property<int>("DegreeId");
+
+                    b.Property<int>("RequirementNumber");
 
                     b.HasKey("DegreeReqId");
 
@@ -284,13 +289,14 @@ namespace PlanYourDegree.Migrations
                     b.Property<int>("StudentId");
 
                     b.Property<string>("FirstName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(20);
 
                     b.Property<string>("LastName")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<int>("NineOneNine")
-                        .HasMaxLength(9);
+                    b.Property<int>("NineOneNine");
 
                     b.HasKey("StudentId");
 
@@ -371,7 +377,7 @@ namespace PlanYourDegree.Migrations
             modelBuilder.Entity("PlanYourDegree.Models.DegreeReq", b =>
                 {
                     b.HasOne("PlanYourDegree.Models.Course", "Course")
-                        .WithMany("DegreeReqs")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -384,7 +390,7 @@ namespace PlanYourDegree.Migrations
             modelBuilder.Entity("PlanYourDegree.Models.DegreeTermReq", b =>
                 {
                     b.HasOne("PlanYourDegree.Models.Course", "Course")
-                        .WithMany("DegreeTermReqs")
+                        .WithMany()
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade);
 
