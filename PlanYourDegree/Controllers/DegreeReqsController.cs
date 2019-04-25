@@ -20,10 +20,61 @@ namespace PlanYourDegree.Controllers
         }
 
         // GET: DegreeReqs
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(String sortOrder, string searchString)
         {
-            var applicationDbContext = _context.DegreeReqs.Include(d => d.Course).Include(d => d.Degree);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["DegreeReqIdParm"] = sortOrder == "DegreeReqId" ? "DegreeReqId_desc" : "DegreeReqId";
+            ViewData["DegreeIdParm"] = sortOrder == "DegreeId" ? "DegreeId_desc" : "DegreeId";
+            ViewData["CourseParm"] = sortOrder == "Course" ? "Course_desc" : "Course";
+            ViewData["RequirementNumberParm"] = sortOrder == "RequirementNumber" ? "RequirementNumber_desc" : "RequirementNumber";
+            ViewData["CourseNameParm"] = sortOrder == "CourseName" ? "CourseName_desc" : "CourseName";
+
+            ViewData["CurrentFilter"] = searchString;
+            // var applicationDbContext = _context.DegreeReqs.Include(d => d.Course).Include(d => d.Degree);
+            // return View(await applicationDbContext.ToListAsync());
+            var degreereqs = from dr in _context.DegreeReqs select dr;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                degreereqs = degreereqs.Where(dr => dr.DegreeReqId.Equals(searchString) ||
+                dr.Degree.Equals(searchString) || dr.Course.Equals(searchString) || dr.RequirementNumber.Equals(searchString) ||
+                dr.CourseName.Equals(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "DegreeReqId":
+                    degreereqs = degreereqs.OrderBy(dp => dp.DegreeReqId);
+                    break;
+                case "DegreeReqId_desc":
+                    degreereqs = degreereqs.OrderByDescending(dp => dp.DegreeReqId);
+                    break;
+                case "DegreeId":
+                    degreereqs = degreereqs.OrderBy(dp => dp.DegreeId);
+                    break;
+                case "DegreeId_desc":
+                    degreereqs = degreereqs.OrderByDescending(dp => dp.DegreeId);
+                    break;
+                case "Course":
+                    degreereqs = degreereqs.OrderBy(dp => dp.Course);
+                    break;
+                case "Course_desc":
+                    degreereqs = degreereqs.OrderByDescending(dp => dp.Course);
+                    break;
+                case "RequirementNumber":
+                    degreereqs = degreereqs.OrderBy(dp => dp.RequirementNumber);
+                    break;
+                case "RequirementNumber_desc":
+                    degreereqs = degreereqs.OrderByDescending(dp => dp.RequirementNumber);
+                    break;
+                case "CourseName":
+                    degreereqs = degreereqs.OrderBy(dp => dp.CourseName);
+                    break;
+                case "CourseName_desc":
+                    degreereqs = degreereqs.OrderByDescending(dp => dp.CourseName);
+                    break;
+                default:
+                    degreereqs = degreereqs.OrderBy(dp => dp.DegreeReqId);
+                    break;
+            }
+            return View(await degreereqs.AsNoTracking().ToListAsync());
         }
 
         // GET: DegreeReqs/Details/5

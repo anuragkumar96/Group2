@@ -11,6 +11,7 @@ namespace PlanYourDegree.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
+        [MaxLength(20)]
         public int DegreeTermReqId { get; set; }
         [Required]
         [ForeignKey("DegreePlan")]

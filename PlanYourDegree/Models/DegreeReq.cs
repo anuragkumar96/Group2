@@ -12,6 +12,7 @@ namespace PlanYourDegree.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
+        [MaxLength(20)]
         public int DegreeReqId { get; set; }
         [Required]
         [ForeignKey("Degree")]
@@ -19,9 +20,9 @@ namespace PlanYourDegree.Models
         [Required]
         [ForeignKey("Course")]
         public int CourseId { get; set; }
-
+        [MaxLength(5)]
         public int RequirementNumber { get; set; }
-
+        [MaxLength(60)]
         public String CourseName { get; set; }
 
         public Degree Degree { get; set; }
