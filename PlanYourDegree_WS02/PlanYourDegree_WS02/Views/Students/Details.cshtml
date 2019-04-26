@@ -1,0 +1,76 @@
+﻿@model PlanYourDegree_WS02.Models.Student
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.First)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.First)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Last)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Last)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DegreePlans)
+        </dt>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Degree</th>
+                    <th>Plan Number</th>
+                    <th>Plan Abbrev</th>
+                    <th>Plan Name</th>
+                    <th>Degree Status</th>
+                    <th>Includes Internship?</th>
+                    <th>More</th>
+                </tr>
+                @foreach (var item in Model.DegreePlans.OrderBy(p => p.DegreeID))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreeID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StudentID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanAbbrev)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DegreePlanName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Done)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="DegreePlans" asp-route-id="@item.DegreePlanId">Plan</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StudentId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
