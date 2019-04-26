@@ -23,11 +23,7 @@ namespace PlanYourDegree.Models
 
         public override string ToString()
         {
-            return base.ToString() + ": " +
-              "DegreeId = " + DegreeId +
-              ", DegreeAbbrev = " + DegreeAbbrive +
-              ", DegreeName = " + DegreeName +
-              "";
+            return base.ToString() + ": " +"DegreeId = " + DegreeId + ", DegreeAbbrev = " + DegreeAbbrive + ", DegreeName = " + DegreeName + "";
         }
     }
 }
