@@ -25,6 +25,10 @@ https://dev.azure.com/S528116/WS02_PlanYourDegree/_boards/board/t/WS02_PlanYourD
 
 # Sreen shots showing our running application:
 
+![](https://github.com/anuragkumar96/ws02_Raptors/blob/master/outputScreenshot1.png)
+
+![](https://github.com/anuragkumar96/ws02_Raptors/blob/master/outputScreenshot2.png)
+
 ![](https://github.com/anuragkumar96/ws02_Raptors/blob/master/CAP2.png)
 
 ![](https://github.com/anuragkumar96/ws02_Raptors/blob/master/CAP1.png)
