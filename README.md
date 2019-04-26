@@ -7,6 +7,9 @@
 * Ujjawal Kumar
 * Nilantha Dambadeni Kalu Achchillage
 
+# Team Slide:
+![team](https://github.com/anuragkumar96/ws02_Raptors/blob/master/team.png)
+
 # How to clone, initialize, and run our app locally:
 
 https://github.com/anuragkumar96/ws02_Raptors
