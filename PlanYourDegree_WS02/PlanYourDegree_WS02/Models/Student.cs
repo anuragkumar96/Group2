@@ -22,7 +22,11 @@ namespace PlanYourDegree_WS02.Models
         [Display(Name = "Family")]
         public string Last { get; set; }
 
+        [StringLength(50, MinimumLength = 3)]
+        [Display(Name = "S Number")]
         public string Snumber { get; set; }
+        
+
         public int catpawsnum { get; set; }
         public bool Done { get; set; }
 
